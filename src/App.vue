@@ -74,7 +74,7 @@ function loadTurn(index: number) {
       </div>
     </div>
     <h1 v-if="win">Player {{ player === 'X' ? 'O' : 'X' }} won !</h1>
-    <button @click="reset()" class="button">RESET</button>
+    <button @click="reset()" class="button reset">RESET</button>
   </main>
 </template>
 
@@ -83,6 +83,7 @@ function loadTurn(index: number) {
   display: flex;
   align-items: flex-start;
   justify-content: center;
+  flex-wrap: wrap;
   gap: 2rem;
 }
 
@@ -90,7 +91,6 @@ function loadTurn(index: number) {
   display: grid;
   grid-auto-rows: 9rem;
   grid-template-columns: repeat(3, 9rem);
-  margin-bottom: 1rem;
 }
 
 .case {
@@ -98,7 +98,6 @@ function loadTurn(index: number) {
   background-color: inherit;
   font-size: xx-large;
   text-align: center;
-
 }
 
 .case:hover {
@@ -126,5 +125,9 @@ function loadTurn(index: number) {
 
 .button:hover {
   background-color: #2dd4bf;
+}
+
+.reset {
+  margin-block: 1rem;
 }
 </style>
