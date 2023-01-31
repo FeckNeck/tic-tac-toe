@@ -1,0 +1,14 @@
+body {
+  background-color: #0d2438;
+  color: white;
+  font-family: Nunito;
+}
+
+@font-face {
+  font-family: "Nunito";
+  src: url("./assets/Nunito-Regular.ttf") format("ttf");
+}
+
+#app {
+  text-align: center;
+}
