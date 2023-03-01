@@ -1,31 +1,30 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, ref } from "vue";
 
-const grid = ref(Array(9).fill(''))
-const player = ref('X')
-const historic = ref<any>([])
-let turn = 0
+const grid = ref(Array(9).fill(""));
+const player = ref("X");
+const historic = ref<any>([]);
+let turn = 0;
 
 function play(index: number) {
-  if (win.value) return
-  if (grid.value[index] !== '') return
+  if (win.value) return;
+  if (grid.value[index] !== "") return;
 
   if (turn) {
-    historic.value.length = turn
-    historic.value.push([...grid.value])
-    turn = 0
+    historic.value.length = turn;
+    historic.value.push([...grid.value]);
+    turn = 0;
   }
 
-  grid.value[index] = player.value
-  player.value = player.value === 'X' ? 'O' : 'X'
-  historic.value.push([...grid.value])
-
+  grid.value[index] = player.value;
+  player.value = player.value === "X" ? "O" : "X";
+  historic.value.push([...grid.value]);
 }
 
 function reset() {
-  grid.value = Array(9).fill('')
-  player.value = 'X'
-  historic.value = []
+  grid.value = Array(9).fill("");
+  player.value = "X";
+  historic.value = [];
 }
 
 // from react tutorial
@@ -47,13 +46,13 @@ const calculateWinner = (squares: any) => {
     }
   }
   return null;
-}
+};
 
-const win = computed(() => calculateWinner(grid.value.flat()))
+const win = computed(() => calculateWinner(grid.value.flat()));
 
 function loadTurn(index: number) {
-  grid.value = historic.value[index]
-  turn = index
+  grid.value = historic.value[index];
+  turn = index;
 }
 </script>
 
@@ -63,17 +62,29 @@ function loadTurn(index: number) {
     <p>Player turn : {{ player }}</p>
     <div class="container">
       <div class="grid">
-        <button v-for="(square, index) in grid" :key="index" class="case" @click="play(index)" :style="{
-          color: grid[index] === 'X' ? '#ef4444' : '#3b82f6'
-        }">{{
-  grid[index]
-}}</button>
+        <button
+          v-for="(square, index) in grid"
+          :key="index"
+          class="case"
+          @click="play(index)"
+          :style="{
+            color: grid[index] === 'X' ? '#ef4444' : '#3b82f6',
+          }"
+        >
+          {{ grid[index] }}
+        </button>
       </div>
       <div class="historic">
-        <button v-for="index in historic.length" @click="loadTurn(index - 1)" class="button">turn {{ index }}</button>
+        <button
+          v-for="index in historic.length"
+          @click="loadTurn(index - 1)"
+          class="button"
+        >
+          turn {{ index }}
+        </button>
       </div>
     </div>
-    <h1 v-if="win">Player {{ player === 'X' ? 'O' : 'X' }} won !</h1>
+    <h1 v-if="win">Player {{ player === "X" ? "O" : "X" }} won !</h1>
     <button @click="reset()" class="button reset">RESET</button>
   </main>
 </template>
@@ -94,14 +105,14 @@ function loadTurn(index: number) {
 }
 
 .case {
-  border: 1px solid #1E3851;
+  border: 1px solid #1e3851;
   background-color: inherit;
   font-size: xx-large;
   text-align: center;
 }
 
 .case:hover {
-  background-color: #1E3851
+  background-color: #1e3851;
 }
 
 .historic {
